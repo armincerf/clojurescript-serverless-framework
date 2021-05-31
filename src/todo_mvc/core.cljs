@@ -88,7 +88,8 @@
                                     :on-update-title update-todo-title
                                     & todo})))]
     ($ rr/BrowserRouter
-       (d/div
+       (d/main
+        {:class "py-16"}
         (d/section
          {:class "todoapp"}
          (d/header
@@ -112,7 +113,7 @@
                  ($ rr/Route {:path "/"}
                     (todo-list todos)))))
             (d/footer
-             {:class "footer"}
+             {:class "footer h-12"}
              (d/span
               {:class "todo-count"}
               (d/strong (count active-todos))

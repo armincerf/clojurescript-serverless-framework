@@ -1,10 +1,11 @@
 node_modules
-js/
+resources/public/js/
+resources/public/css/
 /package-lock.json
 /yarn.lock
 .shadow-cljs/
 /.cpcache
-
+.DS_Store
 .clj-kondo/*
 !.clj-kondo/.gitkeep
 !.clj-kondo/config.edn
