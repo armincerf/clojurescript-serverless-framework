@@ -4,3 +4,7 @@ js/
 /yarn.lock
 .shadow-cljs/
 /.cpcache
+
+.clj-kondo/*
+!.clj-kondo/.gitkeep
+!.clj-kondo/config.edn
