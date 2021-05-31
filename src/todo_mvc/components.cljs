@@ -1,6 +1,5 @@
 (ns todo-mvc.components
   (:require
-   [helix.core :as hx :refer [$ <>]]
    [helix.dom :as d]
    [helix.hooks :as hooks]
    [todo-mvc.lib :refer [defnc]])
@@ -41,7 +40,7 @@
   {:editing? false
    :title title})
 
-(defmulti todo-actions (fn [state action] (first action)))
+(defmulti todo-actions (fn [_state action] (first action)))
 
 (defmethod todo-actions
   ::start-editing [state _]
@@ -56,7 +55,7 @@
   (assoc state :title new-title))
 
 (defmethod todo-actions
-  ::reset [state [_ initial-title]]
+  ::reset [_state [_ initial-title]]
   (init-state initial-title))
 
 (defnc TodoItem

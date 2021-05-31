@@ -10,7 +10,7 @@
   (.setItem js/window.localStorage key (pr-str val)))
 
 (defn use-persisted-reducer
-  ([storage-key reducer initial-state init]
+  ([storage-key reducer _initial-state init]
    (let [initial (get-storage storage-key)
          reducer-tuple (hooks/use-reducer reducer initial init)
          [state] reducer-tuple]

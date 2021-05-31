@@ -3,7 +3,6 @@
    [clojure.string :as string]
    [helix.core :as hx :refer [$ <>]]
    [helix.dom :as d]
-   [helix.hooks :as hooks]
    [todo-mvc.components :as c]
    [todo-mvc.lib :refer [defnc]]
    [todo-mvc.storage :as storage]
@@ -22,7 +21,7 @@
 
 (defmethod todo-actions
   ::init [state _]
-	;; initialize with empty vector if nothing in local storage
+  ;; initialize with empty vector if nothing in local storage
   (or state []))
 
 (defmethod todo-actions
@@ -72,7 +71,7 @@
         active-todos (filter (comp not :completed?) todos)
         completed-todos (filter :completed? todos)
 
-				;; TodoList handlers
+        ;; TodoList handlers
         add-todo #(dispatch [::add (string/trim %)])
         remove-todo #(dispatch [::remove %])
         toggle-todo #(dispatch [::toggle %])
