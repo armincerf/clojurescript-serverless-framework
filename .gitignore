@@ -14,3 +14,4 @@ node_modules
 /*.iml
 /.nrepl-port
 shadow-cljs-tailwind.iml
+/src/gen

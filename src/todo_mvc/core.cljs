@@ -3,6 +3,7 @@
    [clojure.string :as string]
    [helix.core :as hx :refer [$ <>]]
    [helix.dom :as d]
+   ["../gen/Title.js" :refer (Title)]
    [todo-mvc.components :as c]
    [todo-mvc.lib :refer [defnc]]
    [todo-mvc.storage :as storage]
@@ -94,7 +95,9 @@
          {:class "todoapp"}
          (d/header
           {:class "header"}
-          (c/title)
+          ($ Title {:label "Tasks"
+                    :size "large"
+                    :primary true})
           (c/new-todo {:on-complete add-todo}))
          (when (< 0 (count todos))
            (<>

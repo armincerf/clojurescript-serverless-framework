@@ -8,8 +8,10 @@
     "postcss:release": "cross-env NODE_ENV=production postcss src/css/tailwind.css -o ./public/css/main.css --verbose",
     "dev": "run-p -l *:watch",
     "release": "run-s *:release",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:watch": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "babel:watch": "babel --plugins @babel/plugin-transform-react-jsx src/stories --out-dir src/gen --watch",
+    "babel:release": "babel --plugins @babel/plugin-transform-react-jsx src/stories --out-dir src/gen"
   },
   "dependencies": {
     "@storybook/addon-essentials": "^6.2.9",
@@ -26,12 +28,13 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-react-jsx": "^7.14.3",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "^6.2.9",
-    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "storybook-dark-mode": "^1.0.8"
   }

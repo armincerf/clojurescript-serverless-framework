@@ -10,7 +10,7 @@ export const Title = ({ primary, backgroundColor, size, label, ...props }) => {
     size === "large" ? "text-8xl" : size === "small" ? "text-lg" : "text-4xl";
   return (
     <h1
-      className={[sizeClass, mode].join(" ")}
+      className={[sizeClass, mode, "font-extralight"].join(" ")}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
