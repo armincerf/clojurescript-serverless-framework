@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "npx shadow-cljs watch app"
+    "start": "npx shadow-cljs watch app",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "autoprefixer": "^10.2.6",
@@ -15,5 +17,13 @@
     "tailwindcss": "^2.1.2",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "babel-loader": "^8.2.2"
   }
 }
