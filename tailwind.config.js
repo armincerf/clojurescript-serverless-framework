@@ -3,12 +3,14 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   purge: [],
   darkMode: "media", // or 'media' or 'class'
+  important: true,
   theme: {
-    colors: {
-      primary: "#5c6ac4",
-      secondary: "#ecc94b",
+    extend: {
+        colors: {
+            primary: "#c9d8ff",
+            secondary: "#ecc94b",
+          },
     },
-    extend: {},
   },
   variants: {},
   plugins: [],

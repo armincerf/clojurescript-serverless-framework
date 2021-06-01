@@ -1,14 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 /**
  * Primary UI component for user interaction
  */
 export const Title = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ?  'bg-primary' : 'text-secondary';
+  const mode = primary ? "text-primary" : "dark:text-white";
+  const sizeClass =
+    size === "large" ? "text-8xl" : size === "small" ? "text-lg" : "text-4xl";
   return (
     <h1
-      className={['storybook-title', `storybook-title--${size}`, mode].join(' ')}
+      className={[sizeClass, mode].join(" ")}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
@@ -29,7 +31,7 @@ Title.propTypes = {
   /**
    * How large should the title be?
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   /**
    * Title contents
    */
@@ -43,6 +45,6 @@ Title.propTypes = {
 Title.defaultProps = {
   backgroundColor: null,
   primary: false,
-  size: 'medium',
+  size: "medium",
   onClick: undefined,
 };
