@@ -1,6 +1,4 @@
 node_modules
-resources/public/js/
-resources/public/css/
 /package-lock.json
 /yarn.lock
 .shadow-cljs/
@@ -9,3 +7,10 @@ resources/public/css/
 .clj-kondo/*
 !.clj-kondo/.gitkeep
 !.clj-kondo/config.edn
+/.cpcache
+/public/js
+/public/css
+/target
+/*.iml
+/.nrepl-port
+shadow-cljs-tailwind.iml

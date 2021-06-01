@@ -3,17 +3,10 @@
 
  :builds
  {:app {:target :browser
-        :output-dir "resources/public/js"
+        :output-dir "public/js"
         :asset-path "/js"
         :modules {:app {:entries [todo-mvc.core]}}
-        :dev
-        {:build-hooks
-         [(teknql.tailwind/start-watch!)]}
-        :release
-        {:build-hooks
-         [(teknql.tailwind/compile-release!)]}
-        :tailwind/output "resources/public/css/site.css"
-        :devtools {:http-root "resources/public/"
+        :devtools {:http-root "public/"
                    :http-port 8888
                    :reload-strategy :full
                    :preloads [devtools.preload
