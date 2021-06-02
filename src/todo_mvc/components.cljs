@@ -3,7 +3,6 @@
    [helix.dom :as d]
    [helix.core :as hx :refer [$ <>]]
    [helix.hooks :as hooks]
-   ["../gen/TaskHeader.js" :refer (TaskHeader)]
    [todo-mvc.lib :refer [defnc]])
   (:require-macros
    [todo-mvc.components]))
@@ -42,14 +41,14 @@
   [{:keys [on-complete]}]
   (let [[new-todo set-new-todo] (hooks/use-state "")
         on-change #(set-new-todo (.. % -target -value))]
-    ($ TaskHeader
-       {:label "What needs to be done?"
-        :value new-todo
-        :autoFocus true
-        :onKeyDown #(when (enter-key? %)
-                        (on-complete new-todo)
-                        (set-new-todo ""))
-        :onChange on-change})))
+))
+
+(defnc TodoList
+  [{:keys [todos on-complete]}]
+  (let [[new-todo set-new-todo] (hooks/use-state "")
+        on-change #(set-new-todo (.. % -target -value))]
+    (prn todos)
+))
 
 (defn init-state [title]
   {:editing? false

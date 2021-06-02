@@ -35,7 +35,7 @@ export const TaskHeader: React.FC<TaskHeaderProps> = ({
   ...props
 }) => {
   return (
-    <header className="bg-white">
+    <header className="bg-white b">
       <button
         className="toggle-all absolute z-10 hover:opacity-95"
         aria-label="Toggle Select All"

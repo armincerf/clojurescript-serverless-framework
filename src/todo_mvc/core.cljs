@@ -92,9 +92,8 @@
        (d/main
         {:class "py-16"}
         (d/section
-         (d/header
-          ($ Title {:label "New Tasks"})
-          (c/new-todo2 {:on-complete add-todo})))
+         ($ c/TodoList {:on-complete add-todo
+                        :todos todos}))
         (d/section
          {:class "todoapp"}
          (d/header
