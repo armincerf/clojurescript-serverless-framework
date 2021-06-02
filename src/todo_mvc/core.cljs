@@ -92,11 +92,15 @@
        (d/main
         {:class "py-16"}
         (d/section
+         (d/header
+          ($ Title {:label "New Tasks"})
+          (c/new-todo2 {:on-complete add-todo})))
+        (d/section
          {:class "todoapp"}
          (d/header
           {:class "header"}
           ($ Title {:label "Tasks"
-                    :size "large"
+                    :size "medium"
                     :primary true})
           (c/new-todo {:on-complete add-todo}))
          (when (< 0 (count todos))
