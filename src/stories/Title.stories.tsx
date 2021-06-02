@@ -1,16 +1,13 @@
-import React from 'react';
+import { Story, Meta } from '@storybook/react';
 
-import { Title } from './Title';
+import { Title, TitleProps } from './Title';
 
 export default {
-  title: 'Example/Title',
+  title: 'Todo/Title',
   component: Title,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-};
+} as Meta;
 
-const Template = (args) => <Title {...args} />;
+const Template: Story<TitleProps> = (args) => <Title {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -20,17 +17,5 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Title',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Title',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
   label: 'Title',
 };
