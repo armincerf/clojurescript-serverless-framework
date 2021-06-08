@@ -8,7 +8,7 @@
     "postcss:release": "cross-env NODE_ENV=production postcss src/css/tailwind.css -o ./public/css/main.css --verbose",
     "dev": "run-p -l *:watch",
     "release": "run-s *:release",
-    "storybook:watch": "start-storybook -p 6006",
+      "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "babel:watch": "babel --presets @babel/preset-typescript --plugins @babel/plugin-transform-react-jsx src/stories --out-dir src/gen --watch --extensions .tsx",
     "babel:release": "babel --plugins @babel/plugin-transform-react-jsx src/stories --out-dir src/gen"

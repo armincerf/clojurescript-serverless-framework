@@ -39,22 +39,26 @@ export const TaskList: React.FC<TaskListProps> = ({
   }
   if (tasks.length === 0) {
     return (
-      <ul className="list-items">
-        <div className="wrapper-message">
-          <span className="icon-check" />
-          <div className="title-message">You have no tasks</div>
-          <div className="subtitle-message">Sit back and relax</div>
-        </div>
-      </ul>
+        <section>
+            <TaskHeader {...taskHeaderProps} />
+            <ul className="list-items">
+                <div className="wrapper-message">
+                    <span className="icon-check" />
+                    <div className="title-message">You have no tasks</div>
+                    <div className="subtitle-message">Sit back and relax</div>
+                </div>
+            </ul>
+        </section>
     );
   }
+
   return (
     <section>
       <TaskHeader {...taskHeaderProps} />
       <ul className="list-items">
-        {tasks.map((taskProps) => (
-          <Task key={taskProps.task.id} {...taskProps} />
-        ))}
+          {tasks.map((taskProps, index) =>
+           <Task key={taskProps.task.id} {...taskProps}></Task>
+          )}
       </ul>
     </section>
   );

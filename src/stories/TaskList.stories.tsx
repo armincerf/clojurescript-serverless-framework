@@ -11,8 +11,7 @@ export default {
 const Template = (args: TaskListProps) => <TaskList {...args} />;
 const defaultTask = {
   task: { ...TaskStories.Default.args.task },
-  onArchiveTask: () => null,
-  onPinTask: () => null,
+  onComplete: () => null,
 };
 
 export const Default = Template.bind({});
