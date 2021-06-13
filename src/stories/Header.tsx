@@ -1,47 +1,101 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from './Button';
-import './header.css';
+interface Page {
+  name: string;
+  href: string;
+}
+
+interface HeaderPropsLoggedOut {
+  onLogin: () => void;
+  onCreateAccount: () => void;
+}
+
+interface User {
+  email: string;
+}
+
+interface HeaderPropsLoggedIn {
+  onLogout: () => void;
+  user: User;
+}
 
 export interface HeaderProps {
-  user?: {};
+  pages: Page[];
+  user?: User;
   onLogin: () => void;
   onLogout: () => void;
   onCreateAccount: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user, onLogin, onLogout, onCreateAccount }) => (
-  <header>
-    <div className="wrapper">
-      <div>
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
+const LoggedOut: React.FC<HeaderPropsLoggedOut> = ({ onLogin, onCreateAccount }) => (
+  <div className="ml-10 space-x-4">
+    <a
+      onClick={onLogin}
+      className="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
+    >
+      Sign in
+    </a>
+    <a
+      onClick={onCreateAccount}
+      className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+    >
+      Sign up
+    </a>
+  </div>
+);
+
+const LoggedIn: React.FC<HeaderPropsLoggedIn> = ({ onLogout, user }) => (
+  <div className="ml-10 space-x-4">
+    <span className="text-base font-medium text-white">Logged in as: {user.email}</span>
+    <a
+      onClick={onLogout}
+      className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+    >
+      Log Out
+    </a>
+  </div>
+);
+
+export const Header: React.FC<HeaderProps> = ({ pages, user, ...props }) => (
+  <header className="bg-indigo-600">
+    <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+      <div className="w-full py-6 flex items-center justify-between border-b border-indigo-500 lg:border-none">
+        <div className="flex items-center">
+          <a href="#">
+            <span className="sr-only">Workflow</span>
+            <img
+              className="h-10 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
+              alt=""
             />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
+          </a>
+          <div className="hidden ml-10 space-x-8 lg:block">
+            {pages.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-base font-medium text-white hover:text-indigo-50"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
+        {console.log(props)
+        }
+        {user ? <LoggedIn {...props} user={user} /> : <LoggedOut {...props} />}
       </div>
-      <div>
-        {user ? (
-          <Button size="small" onClick={onLogout} label="Log out" />
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
-          </>
-        )}
+      <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
+        {pages.map((link) => (
+          <a
+            key={link.name}
+            href={link.href}
+            className="text-base font-medium text-white hover:text-indigo-50"
+          >
+            {link.name}
+          </a>
+        ))}
       </div>
-    </div>
+    </nav>
   </header>
 );

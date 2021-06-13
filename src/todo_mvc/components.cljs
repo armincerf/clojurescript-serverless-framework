@@ -12,6 +12,12 @@
   (:require-macros
    [todo-mvc.components]))
 
+(defn pprint-code
+  [code]
+  (d/code
+   {:style {:text-align "left"}}
+   (d/pre (with-out-str (pprint/pprint code)))))
+
 (defn enter-key? [ev]
   (= (.-which ev) 13))
 
@@ -97,8 +103,6 @@
   ::clear-completed [todos _]
   (filterv (comp not :completed) todos))
 
-
-
 (defnc TodoList
   []
   (let [[todos dispatch] (storage/use-persisted-reducer
@@ -134,9 +138,6 @@
         [new-todo set-new-todo] (hooks/use-state "")
         on-change #(set-new-todo (.. % -target -value))]
     (<>
-     (d/code
-      {:style {:text-align "left"}}
-      (d/pre (with-out-str (pprint/pprint todos))))
      ($ TaskList
         {:tasks tasks
          :taskHeaderProps #js {:label "What needs to be done?"
