@@ -81,8 +81,6 @@ export const Header: React.FC<HeaderProps> = ({ pages, user, ...props }) => (
             ))}
           </div>
         </div>
-        {console.log(props)
-        }
         {user ? <LoggedIn {...props} user={user} /> : <LoggedOut {...props} />}
       </div>
       <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">

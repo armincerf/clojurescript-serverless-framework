@@ -8,6 +8,7 @@
 ## Quick start
 
 TODO add hasura+auth0 setup steps
+https://www.notion.so/Docs-fb1367f45bb943ef9d44a257e419082b
 
 You will need [Node.js](https://nodejs.org/en/) and [Clojure CLI tools](https://clojure.org/guides/getting_started) installed on your machine.
 

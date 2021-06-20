@@ -23,7 +23,6 @@ export const Task: React.FC<TaskProps> = ({
   onComplete,
   ...props
 }) => {
-  console.log(props);
 
   return (
     <div className={"flex items-center border-b border-solid border-gray-100 text-2xl"}>
@@ -36,9 +35,9 @@ export const Task: React.FC<TaskProps> = ({
           name="checked"
         />
       </label>
-      <div className="h-10">
+      <div className="h-10 w-full">
         <input
-        className={"overflow-ellipsis " + completed}
+        className={"w-3/4 overflow-ellipsis " + completed}
           type="text"
           value={title}
           readOnly={true}
