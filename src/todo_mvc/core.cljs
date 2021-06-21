@@ -1,6 +1,6 @@
 (ns todo-mvc.core
   (:require
-   [helix.core :as hx :refer [$ <>]]
+   [helix.core :as hx :refer [$]]
    [applied-science.js-interop :as j]
    [helix.hooks :as hooks]
    [reseda.state :as state]
@@ -10,25 +10,16 @@
    ["../gen/Title.js" :refer (Title)]
    ["../gen/Loader.js" :refer (Loader)]
    ["../gen/Header.js" :refer (Header)]
+   [todo-mvc.routes :as routes]
    [todo-mvc.graphql :as graphql]
    [todo-mvc.components :as c]
    [todo-mvc.lib :refer [defnc]]
    ["@auth0/auth0-react" :refer [Auth0Provider useAuth0]]
-   ["react" :as react]
    ["react-dom" :as rdom]
    ["react-router-dom" :as rr]))
 
 (defonce backing-store (atom {}))
 (defonce store (state/new-store backing-store))
-
-(defn from-auth0
-  [k]
-  ;; because we are retrieving directly from the atom, this won't rerender any
-  ;; components. but thats ok because auth0 state is only stored once on page
-  ;; load
-  (some-> @backing-store
-          :auth0
-          (j/get k)))
 
 (defn handle-user-sub
   [{:keys [data errors]}]
@@ -46,7 +37,7 @@
       (graphql/handle-errors? (js->clj errors :keywordize-keys true)))
     ($ Header {:pages routes/pages
                :user user-data
-               :onLogout (from-auth0 :logout)})))
+               :onLogout (j/get-in @backing-store [:auth0 :logout])})))
 
 (defnc App
   []
