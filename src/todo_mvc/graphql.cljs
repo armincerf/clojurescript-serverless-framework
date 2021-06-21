@@ -1,4 +1,5 @@
-(ns todo-mvc.graphql)
+(ns todo-mvc.graphql
+  (:require [todo-mvc.log :as log]))
 
 (def hasura-name "alx-todos")
 
@@ -28,5 +29,13 @@
 
 (defn get-me
   [id]
-  (prn "fetching with id: " id)
   (query me-query "me" {:id id}))
+
+(defn handle-errors?
+  "Takes an 'errors' key from a graphql response and returns true and logs the
+  errors if they exist. Returns falsey if there are no errors "
+  [potential-errors]
+  (when-let [errors (or (:errors potential-errors)
+                        (seq potential-errors))]
+    (doseq [error errors]
+      (log/error (:message error) error))))

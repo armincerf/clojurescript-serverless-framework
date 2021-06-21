@@ -30,24 +30,21 @@
           :auth0
           (j/get k)))
 
-(defn user-sub
+(defn handle-user-sub
   [{:keys [data errors]}]
-  (prn "d" (first (:user data)) errors)
-  (swap! backing-store assoc :user (get-in data [:user 0])))
-
-(def pages #js [ #js {:name "home"
-                      :href "/"}])
+  (or
+   (graphql/handle-errors? errors)
+   (swap! backing-store assoc :user (get-in data [:user 0]))))
 
 (defnc TopMenu
   []
-  (let [data (reseda/useStore store :userPromise)
+  (let [user-promise (reseda/useStore store :userPromise)
         user (reseda/useStore store :user)
-        errors (map #(apply str (.-message %)) (.-errors ^js @data))
         user-data (or (some-> user clj->js)
-                      (j/get-in @data [:data :user 0]))]
-    (when (seq errors)
-      (js/console.error errors))
-    ($ Header {:pages pages
+                      (j/get-in @user-promise [:data :user 0]))]
+    (when-let [errors (j/get @user-promise :errors)]
+      (graphql/handle-errors? (js->clj errors :keywordize-keys true)))
+    ($ Header {:pages routes/pages
                :user user-data
                :onLogout (from-auth0 :logout)})))
 
@@ -57,7 +54,7 @@
      (d/main
       {:class "py-16 mx-auto max-w-3xl"}
       (hx/suspense
-       {:fallback ($ Header {:pages pages
+       {:fallback ($ Header {:pages routes/pages
                              :user #js {:email "Loading User..."}})}
        ($ TopMenu))
       (d/section
@@ -88,7 +85,7 @@
                             (reseda/suspending-value))
            :loaded? true)
     (re-graph/init (re-graph-config graphql/hasura-name))
-    (re-graph/subscribe :me graphql/me-query {:id (j/get res :sub)} user-sub)))
+    (re-graph/subscribe :me graphql/me-query {:id (j/get res :sub)} handle-user-sub)))
 
 (defn Auth0Wrap
   []
