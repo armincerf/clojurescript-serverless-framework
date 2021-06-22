@@ -32,12 +32,13 @@
   (let [user-promise (reseda/useStore store :userPromise)
         user (reseda/useStore store :user)
         user-data (or (some-> user clj->js)
-                      (j/get-in @user-promise [:data :user 0]))]
+                      (j/get-in @user-promise [:data :user 0]))
+        logout-fn (-> @backing-store :auth0 .-logout)]
     (when-let [errors (j/get @user-promise :errors)]
       (graphql/handle-errors? (js->clj errors :keywordize-keys true)))
     ($ Header {:pages routes/pages
                :user user-data
-               :onLogout (j/get-in @backing-store [:auth0 :logout])})))
+               :onLogout #(logout-fn #js {:returnTo js/window.location.origin})})))
 
 (defnc App
   []

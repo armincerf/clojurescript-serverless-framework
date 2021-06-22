@@ -47,12 +47,13 @@ const LoggedOut: React.FC<HeaderPropsLoggedOut> = ({ onLogin, onCreateAccount })
 const LoggedIn: React.FC<HeaderPropsLoggedIn> = ({ onLogout, user }) => (
   <div className="ml-10 space-x-4">
     <span className="text-base font-medium text-white">Logged in as: {user.email}</span>
-    <a
+    <button
+      type="button"
       onClick={onLogout}
       className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
     >
       Log Out
-    </a>
+    </button>
   </div>
 );
 
