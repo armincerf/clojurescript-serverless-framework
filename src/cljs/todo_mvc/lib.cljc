@@ -15,7 +15,7 @@
            ;; feature flags to enable by default
            default-opts {:helix/features {:fast-refresh true}}]
        `(helix.core/defnc ~type ~params
-          ;; we use `merge` here to allow indidivual consumers to override feature
+          ;; we use `merge` here to allow individual consumers to override feature
           ;; flags in special cases
           ~(merge default-opts opts)
           ~@body))))

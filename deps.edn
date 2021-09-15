@@ -1,13 +1,13 @@
-{:paths ["src"]
- :deps {lilactown/helix {:mvn/version "0.1.1"}
-        binaryage/devtools {:mvn/version "1.0.3"}
-        cider/cider-nrepl {:mvn/version "0.26.0"}
-        cider/piggieback {:mvn/version "0.5.2"}
-        refactor-nrepl/refactor-nrepl {:mvn/version "2.5.0"}
+{:paths ["src/cljs" "gen"]
+ :deps {lilactown/helix {:mvn/version "0.1.2"}
         metosin/potpuri {:mvn/version "0.5.3"}
-        applied-science/js-interop {:mvn/version "0.2.7"}
-        re-graph/re-graph {:mvn/version "0.1.15"
-                           :exclusions [re-graph.hato/re-graph.hato]}
-        orestis/reseda {:git/url "https://github.com/orestis/reseda.git"
-                        :sha "f14bf45e889859a0730a29e78a0d6c8dbec5c07e"}
-        thheller/shadow-cljs {:mvn/version "2.14.3"}}}
+        applied-science/js-interop {:mvn/version "0.3.1"}
+        cljs-bean/cljs-bean {:mvn/version "1.7.0"}
+        thheller/shadow-cljs {:mvn/version "2.15.9"}}
+ :aliases
+ {:dev
+  {:extra-deps
+   {binaryage/devtools {:mvn/version "1.0.3"}
+    cider/cider-nrepl {:mvn/version "0.27.0-SNAPSHOT"}
+    cider/piggieback {:mvn/version "0.5.2"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "3.0.0-pr301"}}}}}

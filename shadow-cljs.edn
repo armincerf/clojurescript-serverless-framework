@@ -1,14 +1,14 @@
 ;; shadow-cljs configuration
 {:deps true
-
  :builds
  {:app {:target :browser
         :output-dir "public/js"
         :asset-path "/js"
         :modules {:app {:entries [todo-mvc.core]}}
+        :compiler-options {:output-feature-set :es8}
+        :js-options {:ignore-asset-requires true}
         :devtools {:http-root "public/"
                    :http-port 8888
-                   :loader-mode :script
                    :reload-strategy :full
                    :preloads [devtools.preload
                               todo-mvc.dev]}}}}
