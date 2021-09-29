@@ -1,4 +1,4 @@
-{:paths ["src/cljs" "gen"]
+{:paths ["src/cljs" "src/js" "gen"]
  :deps {lilactown/helix {:mvn/version "0.1.2"}
         metosin/potpuri {:mvn/version "0.5.3"}
         applied-science/js-interop {:mvn/version "0.3.1"}
